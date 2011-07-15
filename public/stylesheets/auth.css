@@ -1,0 +1,39 @@
+body {
+  background-color: #e9fcd4;
+  color: #555;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+a {
+  color: #8cc84b;
+}
+
+a:hover {
+  color: #5e8732;
+}
+
+body > div {
+  margin: auto;
+  width: 400px;
+}
+
+.field > label {
+  display: block;
+  font-size: 16pt;
+  width: 180px;
+}
+
+form input {
+  font-size: 14pt;
+}
+
+.field > input {
+  margin-bottom: 20px;
+  width: 200px;
+  height: 24px;
+}
+
+div#user-data {
+  word-wrap: break-word;
+  font-size: 10pt;
+}

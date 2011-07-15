@@ -1,0 +1,33 @@
+h1 Authorization Server
+
+- if (!everyauth.loggedIn)
+  h2 Not Authenticated
+  h3 Password Authentication
+  #register
+    a(href='/register') Register with Password
+  #password-login
+    a(href='/login', style='border: 0px') Login with Password
+  h3 Social Authentication
+  #social
+    a(href='/auth/facebook', style='border: 0px')
+      img(style='border: 0px', src='/images/facebook_64.png')
+    a(href='/auth/twitter', style='border: 0px')
+      img(style='border: 0px', src='/images/twitter_64.png')
+
+- else
+  h2
+    | Authenticated
+    a(href='/logout') Logout
+  
+  #user-data
+    - if (everyauth.facebook)
+      h3 Facebook User Data
+      p= JSON.stringify(everyauth.facebook.user)
+    
+    - if (everyauth.twitter)
+      h3 Twitter User Data
+      p= JSON.stringify(everyauth.twitter.user)
+  
+  h2 User
+  #data
+    p= everyauth.user

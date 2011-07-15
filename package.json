@@ -1,0 +1,13 @@
+{
+    "name" : "everyauth-sample",
+    "description" : "Node.js sample application using the everyauth module",
+    "version" : "0.0.1",
+    "repository" : "git://github.com/raid5/everyauth-sample.git",
+    "dependencies" : {
+        "jade": "0.12.4",
+        "express": "2.4.1",
+        "everyauth": "0.2.16",
+    		"underscore": "1.1.6",
+    		"underscore.string": "1.1.5"
+    }
+}
