@@ -33,6 +33,15 @@ app.get('/hello', function(req, res) {
 
 // everyauth setup
 
+Everyauth.everymodule
+  .findUserById( function (userId, callback) {
+    console.log('Z Z Z');
+    console.log('findUserById - userId: ' + userId);
+    console.log('Z Z Z');
+  
+    callback(null, { userId: userId });
+  });
+
 // username/password
 Everyauth
   .password
