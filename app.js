@@ -3,33 +3,21 @@ var Express = require('express');
 var Everyauth = require('everyauth');
 var Path = require('path');
 var Util = require('util');
-var fs = require('fs');
 var _= require('underscore');
 
 var app = Express.createServer();
 app.use(Express.logger());
 app.use(Express.bodyParser());
 
-app.configure('development', function(){
-	app.use(Express.errorHandler({ dumpExceptions: true, showStack: true }));
-	app.use(Express.cookieParser());
-	app.use(Express.session({secret: 'a1b2c3d4e5f60000000000000'}));
-});
-
-app.get('/',function (request,response){
-	response.send("<p>Server</p>\n");
-});
+app.use(Express.errorHandler({ dumpExceptions: true, showStack: true }));
+app.use(Express.cookieParser());
+app.use(Express.session({secret: 'a1b2c3d4e5f60000000000000'}));
 
 //--- Service
 // Setup view rendering
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(Express.static(__dirname + '/public'));
-
-app.get('/hello', function(req, res) {
-  console.log('get /hello, req.user: ' + Util.inspect(req.user));
-  res.render('index', { title: 'Hello' });
-});
 
 // everyauth setup
 
@@ -96,13 +84,22 @@ Everyauth
     })
     .registerSuccessRedirect('/hello');
     
-    // logout
-    Everyauth.everymodule.logoutRedirectPath('/hello');
+// logout
+Everyauth.everymodule.logoutRedirectPath('/hello');
 
-    // everyauth middleware and view helpers
-    app.use(Everyauth.middleware());
-    Everyauth.helpExpress(app);
+// everyauth middleware and view helpers
+app.use(Everyauth.middleware());
+Everyauth.helpExpress(app);
 //--- Service
+
+app.get('/',function (request,response){
+	response.send("<p>Server</p>\n");
+});
+
+app.get('/hello', function(req, res) {
+  console.log('get /hello, req.user: ' + Util.inspect(req.user));
+  res.render('index', { title: 'Hello' });
+});
 
 app.listen(8080, '127.0.0.1');
 console.log(" Server listening on http://127.0.0.1:8080/");
